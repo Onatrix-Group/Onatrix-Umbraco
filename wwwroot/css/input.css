@@ -27,7 +27,6 @@
 
 body {
     @apply font-poppins;
-/*    @apply bg-red-100;*/
 }
 
 .rte h3 {
@@ -39,11 +38,11 @@ body {
 }
 
 .rte-ul {
-    @apply list-disc pl-5 mt-3;
+    @apply pl-5 mt-3;
 }
 
 .rte-ul li {
-    @apply text-rte-xs text-body-text mb-3;
+    @apply list-disc text-rte-xs text-body-text mb-3;
 }
 
 .rte-ul li::marker {
@@ -57,5 +56,23 @@ body {
 img {
     @apply w-full h-auto object-cover;
 }
+
+.rte.signature img {
+    @apply w-auto h-auto max-w-none;
+}
+
+
+/*.form-btn {
+    @apply w-full bg-accent text-primary text-center font-bold rounded-md cursor-pointer select-none py-3 px-12 text-[1.125rem];
+}*/
+
+   .input-validation-error {
+       @apply border-red-500 focus:ring-1 focus:ring-red-500;
+   }
+
+.field-validation-error {
+    @apply mt-1 block text-sm text-red-600;
+}
+
 
 
