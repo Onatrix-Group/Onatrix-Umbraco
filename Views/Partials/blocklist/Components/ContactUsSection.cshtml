@@ -1,0 +1,67 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    var content = (ContentModels.ContactUsSection)Model.Content;
+    var image = content.ContactUsImage;
+    
+    var page = Umbraco.AssignedContentItem;
+    var isContactPage = page is ContentModels.ContactPage;
+    var bgClass = isContactPage ? "bg-[#fff]" : "bg-white-100";
+}
+
+<section class="contact-us-section relative overflow-hidden @bgClass pt-5">
+    <div class="container relative z-10 mx-auto max-w-7xl flex flex-col lg:flex-row items-center gap-12 lg:gap-24 px-4">
+
+        @if (image != null)
+        {
+            <div class="w-full lg:w-[45%] flex justify-center lg:justify-start">
+                <img src="@image.Url()"
+                     alt="Contact Image"
+                     class="w-full max-w-[480px] object-contain lg:translate-y-10" />
+            </div>
+        }
+
+        <div class="w-full lg:w-1/2 space-y-6">
+            @if (!string.IsNullOrWhiteSpace(content.ContactUsTitle?.ToString()))
+            {
+                <h2 class="contact-us-title text-3xl md:text-4xl font-bold text-gray-800 leading-tight mb-8">
+                    @content.ContactUsTitle
+                </h2>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(content.ContactUsLocation?.ToString()))
+            {
+                <div class="flex items-start gap-3">
+                    <i class="fa-solid fa-location-dot text-[var(--color-secondary)] text-lg mt-1"></i>
+
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-body-text">@Html.Raw(content.ContactUsLocation)</span>
+                    </div>
+                </div>
+            }
+            
+            @if (!string.IsNullOrWhiteSpace(content.ContactUsPhone?.ToString()))
+            {
+                <div class="flex items-start gap-3">
+                    <i class="fa-solid fa-phone text-lg mt-1 text-[var(--color-secondary)]"></i>
+
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-body-text">@Html.Raw(content.ContactUsPhone)</span>
+                    </div>
+                </div>
+            }
+            
+            @if (!string.IsNullOrWhiteSpace(content.ContactUsEmail?.ToString()))
+            {
+                <div class="flex items-start gap-3">
+                    <i class="fa-solid fa-envelope text-lg mt-1 text-[var(--color-secondary)]"></i>
+
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-body-text">@Html.Raw(content.ContactUsEmail)</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
