@@ -1,0 +1,35 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var content = (ContentModels.WhyChooseUsSection)Model.Content;
+}
+
+<section class="relative overflow-hidden">
+    
+    @if (content.WhyChooseUsBgImage != null)
+    {
+
+        <img src="@content.WhyChooseUsBgImage.Url()"
+             alt="onatrix team"
+             class="block"
+        />
+    }
+
+    <div class="absolute inset-0 flex flex-col items-center z-10">
+
+        <h2 class="leading-tight text-center">
+            @content.WhyChooseUsTitle
+        </h2>
+
+        <div class="mt-6 max-w-2xl text-center leading-relaxed">
+            @Html.Raw(content.WhyChooseUsDescription)
+        </div>
+
+        <a href="@content.WhyChooseUsButtonLink?.Url"
+           class="mt-8 bg-primary text-white py-3 px-10 rounded font-bold">
+            @content.WhyChooseUsButtonText
+        </a>
+    </div>
+
+</section>
