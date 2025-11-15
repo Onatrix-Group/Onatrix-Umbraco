@@ -1,0 +1,20 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var content = (ContentModels.AboutFounderSection)Model.Content;
+}
+
+<section class="py-24">
+    <div class="container mx-auto max-w-6xl flex py-">
+        <div class="flex flex-col items-center md:items-start">
+            @if (content.AboutFounderImage != null)
+            {
+                <img src="@content.AboutFounderImage.Url()" alt="Founder standing" />
+            }
+            <span class="mt-4">@content.AboutFounderNameAndRole</span>
+        </div>
+        
+        <div>@content.AboutFounderDescription</div>
+    </div>
+</section>
