@@ -53,6 +53,12 @@ body {
     @apply mb-3;
 }
 
+.callback-variant-contact .rte h2,
+.callback-variant-contact .rte h3 {
+    text-align: center;
+}
+
+
 img {
     @apply w-full h-auto object-cover;
 }
@@ -103,3 +109,7 @@ img {
     bottom: -220px;
 }
 /* */
+
+.contact-form-wrapper {
+    @apply  max-w-[1170px] mx-auto shadow-lg p-[3rem];
+}

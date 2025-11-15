@@ -1,4 +1,5 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using System.Collections
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using OnatrixUmbraco.ViewModels
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
@@ -11,38 +12,62 @@
     {
         Options = settings.CallbackRequestOptions ?? []
     };
+    
+    // Chatgpt suggested: The variant can be "home" or "contact"
+    var variant = ((IEnumerable)content.StyleVariant!)?.Cast<string>().FirstOrDefault()?.ToLower() ?? "home";
 }
 
-<section class="py-[2rem]">
-    <div class="max-w-7xl mx-auto px-4 flex gap-10">
-        <div class="flex flex-col w-7/12">
-            <div class="rte signature">
-                @Html.Raw(content.AboutCallbackSectionBody)
-            </div>
-        </div>
-        
-        <div class="flex flex-col w-5/12 shadow-md -mt-[11rem] z-[99] bg-[#fff]">
-            <div class="bg-primary">
-                <p class="text-accent py-[1.5rem] px-[2rem] text-[1.875rem] font-bold">
-                    @content.AboutCallbackFormTitle
-                </p>
-            </div>
-            <p class="text-sm py-[1.5rem] px-[2rem] italic text-[color:var(--color-body-text)]">
-                @content.AboutCallbackFormDescription
-            </p>
-            <partial name="Partials/Forms/_CallbackForm" model="formVM"/>
-            
-            @if (TempData["FormSuccess"] != null)
-            {
-                <div class="bg-green-50 text-green-700 p-4 mx-[2rem] mb-4 rounded-md">
-                    @TempData["FormSuccess"] 
+@if (variant == "contact")
+{
+    <section class="py-[8rem] callback-variant-contact">
+        <div class="contact-form-wrapper">
+
+            <div class="text-center mb-8">
+                <div class="rte signature">
+                    @Html.Raw(content.AboutCallbackSectionBody)
                 </div>
-            } else if (TempData["FormError"] != null)
-            {
-                <div class="bg-red-50 text-red-700 p-4 mx-[2rem] mb-4 rounded-md">
-                    @TempData["FormError"]
-                </div>  
-            }
+            </div>
+
+            <partial name="Partials/Forms/_CallbackForm" model="formVM" />
+
         </div>
-    </div>
-</section>
+    </section>
+}
+else
+{
+    <section class="py-[2rem] callback-variant-home">
+        <div class="max-w-7xl mx-auto px-4 flex gap-10">
+            <div class="flex flex-col w-7/12">
+                <div class="rte signature">
+                    @Html.Raw(content.AboutCallbackSectionBody)
+                </div>
+            </div>
+        
+            <div class="flex flex-col w-5/12 shadow-md -mt-[11rem] z-[99] bg-[#fff]">
+                <div class="bg-primary">
+                    <p class="text-accent py-[1.5rem] px-[2rem] text-[1.875rem] font-bold">
+                        @content.AboutCallbackFormTitle
+                    </p>
+                </div>
+                <p class="text-sm py-[1.5rem] px-[2rem] italic text-[color:var(--color-body-text)]">
+                    @content.AboutCallbackFormDescription
+                </p>
+                <partial name="Partials/Forms/_CallbackForm" model="formVM"/>
+            
+                @if (TempData["FormSuccess"] != null)
+                {
+                    <div class="bg-green-50 text-green-700 p-4 mx-[2rem] mb-4 rounded-md">
+                        @TempData["FormSuccess"] 
+                    </div>
+                } else if (TempData["FormError"] != null)
+                {
+                    <div class="bg-red-50 text-red-700 p-4 mx-[2rem] mb-4 rounded-md">
+                        @TempData["FormError"]
+                    </div>  
+                }
+            </div>
+        </div>
+    </section>
+}
+
+
