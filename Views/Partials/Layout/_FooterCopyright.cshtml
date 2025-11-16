@@ -1,0 +1,16 @@
+@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var siteSettings = Umbraco.ContentAtRoot().OfType<SiteSettings>().FirstOrDefault();
+    var copyright = siteSettings?.FooterCopyright 
+                    ?? "© Onatrix. All Rights Reserved.";
+}
+
+<footer class="bg-dark py-4">
+    <div class="max-w-7xl mx-auto text-left">
+        <p class="text-sm text-[var(--color-primary)]">
+            @copyright <span class="text-secondary">Themesflat</span> 
+        </p>
+    </div>
+</footer>

@@ -13,13 +13,13 @@
         Options = settings.CallbackRequestOptions ?? []
     };
     
-    // Chatgpt suggested: The variant can be "home" or "contact"
+    // Chatgpt suggested: The style variant can be "home" or "contact"
     var variant = ((IEnumerable)content.StyleVariant!)?.Cast<string>().FirstOrDefault()?.ToLower() ?? "home";
 }
 
 @if (variant == "contact")
 {
-    <section class="py-[8rem] callback-variant-contact bg-[#fff]">
+    <section class="callback-variant-contact bg-[#fff]">
         <div class="contact-form-wrapper w-7/12 shadow-md -mt-[11rem] z-[99]  items-center">
 
             <div class="text-center mb-8">
@@ -27,7 +27,7 @@
                     @Html.Raw(content.AboutCallbackSectionBody)
                 </div>
             </div>
-
+            
             <partial name="Partials/Forms/_CallbackForm" model="formVM" />
 
         </div>

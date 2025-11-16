@@ -6,7 +6,7 @@
     var content = (ContentModels.SuccessSection)Model.Content;
 }
 
-<section class="success-section bg-[#5C6961] py-20 text-center">
+<section class="success-section bg-[#5C6961] pt-20 pb-60 text-center">
     <div class="container mx-auto max-w-6xl">
 
         <div class="success-header">
@@ -17,10 +17,5 @@
         <div class="success-items">
             @await Html.GetBlockListHtmlAsync(content.SuccessItems)
         </div>
-
-        <div class="success-image">
-            <img src="@content.SuccessVideoImage?.Url()" alt="Team working together">
-        </div>
-
     </div>
 </section>

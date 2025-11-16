@@ -3,7 +3,7 @@
 @{
     var rootContent = Umbraco.ContentAtRoot();
     var siteSettings = rootContent.OfType<SiteSettings>().FirstOrDefault();
-    var contactAddress = siteSettings?.ContactAddress ?? "Ingen address angiven";
+    var contactAddress = siteSettings?.ContactAddress ?? "The address is not available";
 }
 
 <div class="bg-[var(--color-primary)]">

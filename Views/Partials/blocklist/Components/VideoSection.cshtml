@@ -1,0 +1,17 @@
+@inherits UmbracoViewPage<BlockListItem>
+@using Umbraco.Cms.Core.Models.Blocks;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var content = (ContentModels.VideoSection)Model.Content;
+}
+
+<section class="container mt-[-350px] mx-auto w-[45%]">
+    <div class="success-image">
+
+        @{
+            System.Diagnostics.Debug.Assert(content?.VideoSectionImage != null, "content?.VideoSectionImage != null");
+        }
+        <img src="@content?.VideoSectionImage.Url()" alt="Team working together">
+    </div>
+</section>

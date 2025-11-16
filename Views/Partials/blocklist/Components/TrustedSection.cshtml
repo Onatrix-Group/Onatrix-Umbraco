@@ -5,26 +5,27 @@
     var content = (ContentModels.TrustedSection)Model.Content;
 }
 
-<section class="trusted-section bg-white-100 py-24">
-    <div class="container mx-auto max-w-6xl flex flex-row md:flex-row items-center">
-        <div>
+<section class="trusted-section bg-white-100">
+    <div class="container mr-0 ml-auto max-w-8xl flex flex-row md:flex-row items-stretch">
+        <div class="w-1/2 py-30">
             <span>@content.TrustedSectionLabel</span>
-            <h2>@content.TrustedSectionTitle</h2>
-            <p>@content.TrustedSectionDescription</p>
-            <div class="star-icon flex">
+            <h2 class="mt-4">@content.TrustedSectionTitle</h2>
+            <p class="mt-4">@content.TrustedSectionDescription</p>
+            <div class="star-icon flex my-4">
                 @foreach (var _ in Enumerable.Range(0, 5))
                 {
-                    <i class="fa-solid fa-star text-white-100 text-lg mt-1 mr-2"></i>
+                    <i class="fa-solid fa-star text-[var(--color-primary)] text-lg mt-1"></i>
                 }
             </div>
             <span>@content.TrustedSectionName</span>
             <span>@content.TrustedSectionCompany</span>
         </div>
-        <div>
+        <div class="lg:block w-1/2 bg-cover bg-center"
+             style="background-image:url('@content.TrustedSectionImage.Url()');">
             @{
                 System.Diagnostics.Debug.Assert(content.TrustedSectionImage != null, "content.TrustedSectionImage != null");
             }
-            <img src="@content.TrustedSectionImage.Url()" alt="A trusted person">
+
         </div>
     </div>
 
